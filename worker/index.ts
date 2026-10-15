@@ -2,6 +2,7 @@ import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } fr
 import handler from "vinext/server/app-router-entry";
 import { createRemoteJWKSet, jwtVerify } from "jose";
 import { handleAgentMcp } from "./agent-mcp";
+import { normalizeE164 } from "./phone";
 import {
   automationCatalog,
   integrationCatalog,
@@ -1652,11 +1653,6 @@ async function executeResendDelivery(
   return json({ ok: true, replayed: false, delivery: safeResendDelivery(completed as Record<string, unknown> | null) }, 201);
 }
 
-function normalizeE164(value: unknown) {
-  if (typeof value !== "string") return "";
-  const normalized = value.trim().replace(/[\s().-]/g, "");
-  return /^\+[1-9][0-9]{7,14}$/.test(normalized) ? normalized : "";
-}
 function safeTwilioConnection(row: Record<string, unknown> | null, origin = "") {
   if (!row) return null;
   const base = origin.replace(/\/$/, "");
