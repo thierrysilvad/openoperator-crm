@@ -23,6 +23,10 @@ This project is an independent open-source implementation. It is not affiliated 
 
 The repository does not pretend to include number purchasing, A2P registration, voice, MMS, WhatsApp, a payment processor, social network publisher, review network, or autonomous unrestricted AI. Twilio SMS is optional and works only with operator-owned credentials, a verified Messaging Service, current contact permission, and correct Twilio Console compliance configuration.
 
+## Fork Thierry Silva: telefones brasileiros
+
+Este fork aceita telefones brasileiros em formato nacional ao criar ou editar contatos, convertendo para E.164 (`+55...`): `(84) 98885-1138`, `84988851138`, `5584988851138`, `084 3221-0000`. Fixos de 10 dígitos sem DDD entre parênteses, `55` ou `0` continuam sendo rejeitados por serem ambíguos com números dos EUA. Código em `worker/phone.ts`, testes em `tests/phone.test.ts`.
+
 ## Architecture
 
 - UI: React 19 / Next-compatible Vinext application
